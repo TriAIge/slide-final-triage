@@ -1,3 +1,5 @@
 # TriAIge · Apresentação final
 
-Abra `index.html` em um navegador. Imagens e vídeos são carregados de https://triaige-banca-final.mk-kaori-katayama.chatgpt.site/ e precisam de conexão com a internet.
+Versão atualizada da apresentação, com HTML, CSS, JavaScript, dados, imagens e vídeos locais.
+
+Abra `index.html` por um servidor HTTP ou publique a raiz da branch main no GitHub Pages.

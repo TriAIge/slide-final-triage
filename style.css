@@ -57,9 +57,9 @@ body{height:100dvh;min-height:0;grid-template-rows:auto minmax(0,1fr) auto}
 .icon-button svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 #full .collapse-icon,#full.is-fullscreen .expand-icon{display:none}
 #full.is-fullscreen .collapse-icon{display:block}
-.is-cover #palco{background:linear-gradient(90deg,#191c40 0%,#191c40f4 37%,#191c4080 71%,#191c4040 100%),url('https://triaige-banca-final.mk-kaori-katayama.chatgpt.site/assets/capa.jpg') right center/cover no-repeat}
+.is-cover #palco{background:linear-gradient(90deg,#191c40 0%,#191c40f4 37%,#191c4080 71%,#191c4040 100%),url('assets/capa.jpg') right center/cover no-repeat}
 .cover .copy{max-width:820px}
-@media(max-width:680px){.is-cover #palco{background-image:linear-gradient(90deg,#191c40f5,#191c40a6),url('https://triaige-banca-final.mk-kaori-katayama.chatgpt.site/assets/capa.jpg')}.top,.controls{padding-block:8px}}
+@media(max-width:680px){.is-cover #palco{background-image:linear-gradient(90deg,#191c40f5,#191c40a6),url('assets/capa.jpg')}.top,.controls{padding-block:8px}}
 .solution-visual,.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin:1.3rem 0}
 .solution-visual article{border-top:2px solid var(--accent);padding:18px 0}
 .step-number{display:block;color:var(--accent);font-size:.8rem;font-weight:750;letter-spacing:.08em;margin-bottom:15px}
