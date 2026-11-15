@@ -261,26 +261,32 @@
         </section>
         <section id="infraestrutura" class="slide" hidden>
             <p class="tag">ARQUITETURA</p>
-            <h2>Infraestrutura proposta na AWS</h2>
-            <div class="infra-steps" role="group" aria-label="Etapas do fluxo na infraestrutura"><button data-infra="0"
-                    aria-pressed="true">1 · Receber documentos</button><button data-infra="1" aria-pressed="false">2 ·
-                    Preparar dados</button><button data-infra="2" aria-pressed="false">3 · Analisar com
-                    IA</button><button data-infra="3" aria-pressed="false">4 · Entregar relatório</button></div>
-            <div class="infra-navigation"><button id="infra-prev" aria-label="Etapa anterior da infraestrutura">← Etapa
-                    anterior</button><span id="infra-step-count" aria-live="polite">1 / 4</span><button id="infra-next"
-                    aria-label="Próxima etapa da infraestrutura">Próxima etapa →</button></div>
+            <h2>Infraestrutura atual na AWS</h2>
+
+            <div class="infra-steps" role="group" aria-label="Etapas do fluxo na infraestrutura">
+                <button data-infra="0" aria-pressed="true">1 · Receber documentos</button>
+                <button data-infra="1" aria-pressed="false">2 · Preparar dados</button>
+                <button data-infra="2" aria-pressed="false">3 · Analisar com IA</button>
+                <button data-infra="3" aria-pressed="false">4 · Entregar relatório</button>
+                <button id="infra-overview" type="button" aria-pressed="false">Ver imagem inteira</button>
+                <button id="infra-enlarge" type="button">Expandir ⤢</button>
+            </div>
+
             <div class="infra-layout">
-                <figure class="infra-map"><img src="assets/infra-aws-atual.png"
-                        alt="Arquitetura AWS atual da TriAIge: ALB, duas EC2 com serviços Docker, MySQL privado, S3, filas SQS, Amazon Textract, Gemini, Gmail SMTP e observabilidade CloudWatch com SNS."><span
-                        id="infra-highlight" aria-hidden="true"></span></figure>
-                <aside class="infra-explanation" aria-live="polite"><span id="infra-component"></span>
+                <figure class="infra-map">
+                    <div id="infra-zoom" class="infra-zoom">
+                        <img src="assets/infra-aws-atual.png"
+                            alt="Arquitetura AWS atual da TriAIge: ALB, duas EC2 com serviços Docker, MySQL privado, S3, filas SQS, Amazon Textract, Gemini, Gmail SMTP e observabilidade CloudWatch com SNS.">
+                        <span id="infra-highlight" aria-hidden="true"></span>
+                    </div>
+                </figure>
+                <aside class="infra-explanation" aria-live="polite">
+                    <span id="infra-component"></span>
                     <h3 id="infra-title"></h3>
                     <p id="infra-business"></p>
                     <p id="infra-technical"></p>
                 </aside>
             </div>
-            <p class="source">Arquitetura atual enviada pelo grupo · Passe o mouse pelas etapas ou use as setas. <button
-                    id="infra-enlarge" type="button">Ampliar desenho ↗</button></p>
         </section>
         <section id="poc" class="slide" hidden>
             <p class="tag">DEMO 1</p>
@@ -597,7 +603,8 @@
         <section id="agradecimentos" class="slide thanks" hidden>
             <p class="tag">AGRADECIMENTOS</p>
             <h2>Obrigado!</h2>
-            <p class="thanks-lead">Este projeto é resultado de muitas contribuições, aprendizados e pessoas que fizeram parte dessa trajetória.</p>
+            <p class="thanks-lead">Este projeto é resultado de muitas contribuições, aprendizados e pessoas que fizeram
+                parte dessa trajetória.</p>
 
             <div class="thanks-cols">
                 <article>
@@ -632,9 +639,13 @@
         <p id="plan-dialog-price"></p>
         <dl id="plan-dialog-rules"></dl>
     </dialog>
-    <dialog id="infra-image-dialog" aria-label="Arquitetura AWS ampliada"><button id="infra-image-close" type="button"
-            aria-label="Fechar arquitetura ampliada">Fechar ×</button><img src="assets/infra-aws-atual.png"
-            alt="Arquitetura completa AWS e fluxo de dados TriAIge"></dialog>
+    <dialog id="infra-image-dialog" aria-label="Arquitetura AWS ampliada">
+    <div class="infra-dialog-head">
+        <p id="infra-image-caption"></p>
+        <button id="infra-image-close" type="button" aria-label="Fechar imagem ampliada">×</button>
+    </div>
+    <img id="infra-image-view" src="assets/infra-aws-atual.png" alt="Arquitetura AWS da TriAIge ampliada">
+</dialog>
 </body>
 
 </html>

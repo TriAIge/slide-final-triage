@@ -2257,16 +2257,23 @@ body {
     border-color: var(--accent)
 }
 
-.infra-layout {
-    display: grid;
-    grid-template-columns: 1.9fr 1fr;
-    gap: 25px;
-    align-items: center
+#infraestrutura .infra-layout {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 32px;
+}
+#infraestrutura .infra-map {
+    flex: none;
+}
+#infraestrutura .infra-explanation {
+    flex: 0 1 420px;
+    margin: 0;
 }
 
-.infra-map {
-    position: relative;
-    margin: 0
+@media (max-width: 860px) {
+    #infraestrutura .infra-layout { flex-direction: column; align-items: stretch; }
+    #infraestrutura .infra-map { width: 100%; }
 }
 
 .infra-map img {
@@ -3471,12 +3478,77 @@ body {
     margin-top: 18px
 }
 
-.infra-navigation {
+/* Usa a largura da tela neste slide */
+#infraestrutura.slide {
+    max-width: min(1680px, calc(100vw - 48px));
+}
+
+/* Botões de ferramenta, com mais espaço embaixo */
+.infra-tools {
     display: flex;
+    gap: 10px;
+    margin: 14px 0 22px;
+}
+
+/* Desenho + explicação */
+.infra-layout {
+    display: grid;
+    grid-template-columns: auto minmax(260px, 340px);
+    justify-content: space-between;
     align-items: center;
-    justify-content: flex-end;
-    gap: 16px;
-    margin: -4px 0 14px
+    gap: 28px;
+}
+.infra-map {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    /* largura limitada pela altura da tela, para a imagem inteira caber (1.641 = proporção do desenho) */
+    width: min(calc(100vw - 480px), calc((100vh - 330px) * 1.641));
+}
+.infra-zoom {
+    position: relative;
+    transform-origin: 0 0;
+    transition: transform .6s cubic-bezier(.4, 0, .2, 1);
+    will-change: transform;
+}
+.infra-zoom img { display: block; width: 100%; height: auto; }
+
+#infra-highlight {
+    position: absolute;
+    border: 2px solid #e6c98a;
+    background: rgba(230, 201, 138, .12);
+    border-radius: 4px;
+    pointer-events: none;
+    transition: all .6s cubic-bezier(.4, 0, .2, 1), opacity .3s;
+}
+
+/* Janela de ampliação */
+#infra-image-dialog {
+    width: min(96vw, 1400px);
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 8px;
+    background: #1b1b3f;
+    color: #f5f4fb;
+}
+#infra-image-dialog::backdrop { background: rgba(5, 5, 20, .8); }
+#infra-image-caption { margin: 10px 0 0; color: #b9b8d4; }
+#infra-image-view {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: calc(94vh - 110px);
+    object-fit: contain;
+    margin-top: 10px;
+    background: #fff;
+}
+
+@media (max-width: 860px) {
+    .infra-layout { grid-template-columns: 1fr; }
+    .infra-map { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .infra-zoom, #infra-highlight { transition: none; }
 }
 
 .infra-navigation button {
@@ -3499,74 +3571,23 @@ body {
     font-size: 18px
 }
 
-.infra-steps button {
-    transition: background .2s, border-color .2s
+.infra-dialog-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
 }
-
-.infra-map #infra-highlight {
-    border-color: var(--accent);
-    box-shadow: none
+#infra-image-caption {
+    margin: 0;
+    color: #b9b8d4;
 }
-
-.infra-map img {
-    border-radius: 10px
-}
-
-#infraestrutura .infra-layout {
-    grid-template-columns: 2.5fr 1fr;
-    gap: 22px
-}
-
-#infraestrutura .infra-map img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px
-}
-
-#infraestrutura .infra-explanation {
-    padding: 12px 16px
-}
-
-#infraestrutura .infra-explanation p {
-    font-size: 17px !important;
-    line-height: 1.4
-}
-
-#infra-enlarge {
-    padding: 4px 9px;
-    font-size: 13px;
-    margin-left: 14px;
-    color: var(--accent)
-}
-
-#infra-image-dialog {
-    width: 98vw;
-    max-width: none;
-    height: 96dvh;
-    max-height: none;
-    padding: 42px 12px 12px;
-    border: 1px solid var(--line);
-    background: var(--bg);
-    overflow: hidden
-}
-
-#infra-image-dialog::backdrop {
-    background: #080b25ed
-}
-
-#infra-image-dialog img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain
-}
-
 #infra-image-close {
-    position: absolute;
-    right: 14px;
-    top: 6px;
-    padding: 5px 12px;
-    font-size: 15px
+    flex: none;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 1.6rem;
+    line-height: 1;
 }
 
 .hook {
@@ -4452,3 +4473,4 @@ body {
         grid-template-columns: 1fr;
     }
 }
+

@@ -356,15 +356,53 @@ technicalTabs.forEach((tab, index) => {
   });
 });
 
+// [componente, título, texto, técnico, caixa [left, top, width, height em %], print nítido]
 const infraData = [
-['ALB → front/orchestrator → S3 Raw → Q2','Receber documentos','O cliente solicita uma URL pré-assinada e envia o documento diretamente ao S3 Raw. O orchestrator publica na fila de pré-processamento.','',[45.5,10.5,39,18]],
-['Q2 → mcp-ai → Amazon Textract → S3 Trusted','Preparar antes da IA','O mcp-ai consome a fila e aciona o OCR assíncrono do Amazon Textract. O texto é anonimizado, agrupado e resumido, com gravação no S3 Trusted.','',[45.5,28,39,19]],
-['Orchestrator ↔ mcp-ai ↔ Gemini → S3 Curated','Analisar com IA','Após o callback, o orchestrator solicita a análise. O mcp-ai lê o texto anonimizado, consulta o Gemini e grava o relatório no S3 Curated.','',[46,34,52.5,28]],
-['Q3 → notification → Gmail SMTP','Entregar relatório','O serviço notification consome o resultado pronto, lê o relatório e envia o e-mail via Gmail SMTP. Retentativas têm filas próprias e DLQ.','',[46,57,52.5,18]]
+['ALB → front/orchestrator → S3 Raw → Q2','Receber documentos','O cliente solicita uma URL pré-assinada e envia o documento diretamente ao S3 Raw. O orchestrator publica na fila de pré-processamento.','',[45.5,10.5,39,18],'assets/infra-etapa-1.png'],
+['Q2 → mcp-ai → Amazon Textract → S3 Trusted','Preparar antes da IA','O mcp-ai consome a fila e aciona o OCR assíncrono do Amazon Textract. O texto é anonimizado, agrupado e resumido, com gravação no S3 Trusted.','',[45.5,28,39,19],'assets/infra-etapa-2.png'],
+['Orchestrator ↔ mcp-ai ↔ Gemini → S3 Curated','Analisar com IA','Após o callback, o orchestrator solicita a análise. O mcp-ai lê o texto anonimizado, consulta o Gemini e grava o relatório no S3 Curated.','',[46,34,52.5,28],'assets/infra-etapa-3.png'],
+['Q3 → notification → Gmail SMTP','Entregar relatório','O serviço notification consome o resultado pronto, lê o relatório e envia o e-mail via Gmail SMTP. Retentativas têm filas próprias e DLQ.','',[46,57,52.5,18],'assets/infra-etapa-4.png']
 ];
+
+const INFRA_FULL_IMAGE = 'assets/infra-aws-atual.png';
 let currentInfra = 0;
+let infraOverview = false;
+const infraZoom = document.querySelector('#infra-zoom');
+const infraImageDialog = document.querySelector('#infra-image-dialog');
+
+function applyInfraZoom(box){
+ const [left,top,width,height]=box;
+ const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+ const scale=Math.max(1,Math.min(2.4,100/(width*1.15),100/(height*1.15)));
+ const tx=clamp(50-(left+width/2)*scale,100-100*scale,0);
+ const ty=clamp(50-(top+height/2)*scale,100-100*scale,0);
+ infraZoom.style.transform='translate('+tx+'%, '+ty+'%) scale('+scale+')';
+}
+
+function setInfraOverview(on){
+ infraOverview=on;
+ const btn=document.querySelector('#infra-overview');
+ btn.setAttribute('aria-pressed',String(on));
+ btn.textContent=on?'Voltar ao zoom':'Ver imagem inteira';
+ document.querySelector('#infra-highlight').style.opacity=on?'0':'1';
+ if(on){
+  infraZoom.style.transform='translate(0%, 0%) scale(1)';
+  document.querySelectorAll('[data-infra]').forEach(b=>b.setAttribute('aria-pressed','false'));
+ }
+}
+
+// Abre a janela; se o print da etapa não existir, mostra o diagrama completo
+function openInfraImage(src,caption){
+ const view=document.querySelector('#infra-image-view');
+ view.onerror=()=>{view.onerror=null;view.src=INFRA_FULL_IMAGE;};
+ view.src=src;
+ document.querySelector('#infra-image-caption').textContent=caption;
+ infraImageDialog.showModal();
+}
+
 function selectInfra(index){
  currentInfra=Math.max(0,Math.min(infraData.length-1,index));
+ setInfraOverview(false);
  const [component,title,business,technical,box]=infraData[currentInfra];
  document.querySelector('#infra-component').textContent=component;
  document.querySelector('#infra-title').textContent=title;
@@ -372,40 +410,31 @@ function selectInfra(index){
  document.querySelector('#infra-technical').textContent=technical;
  const highlight=document.querySelector('#infra-highlight');
  ['left','top','width','height'].forEach((key,i)=>highlight.style[key]=box[i]+'%');
+ applyInfraZoom(box);
  document.querySelectorAll('[data-infra]').forEach((button,i)=>button.setAttribute('aria-pressed',String(i===currentInfra)));
- document.querySelector('#infra-step-count').textContent=(currentInfra+1)+' / 4';
- document.querySelector('#infra-prev').disabled=currentInfra===0;
- document.querySelector('#infra-next').disabled=currentInfra===3;
  fitSlide();
 }
+
 document.querySelectorAll('[data-infra]').forEach(button=>{
- const select=()=>selectInfra(Number(button.dataset.infra));
- button.addEventListener('click',select);
+ const index=Number(button.dataset.infra);
+ const select=()=>selectInfra(index);
+ // Passar o mouse ou focar: zoom na etapa
  button.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')select();});
  button.addEventListener('focus',select);
- button.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();event.stopPropagation();const index=Math.max(0,Math.min(3,currentInfra+(event.key==='ArrowRight'?1:-1)));document.querySelector('[data-infra="'+index+'"]').focus();});
+ // Clicar: print nítido da etapa
+ button.addEventListener('click',()=>{
+  select();
+  const data=infraData[index];
+  openInfraImage(data[5],(index+1)+' · '+data[1]);
+ });
+ button.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();event.stopPropagation();const next=Math.max(0,Math.min(3,currentInfra+(event.key==='ArrowRight'?1:-1)));document.querySelector('[data-infra="'+next+'"]').focus();});
 });
-document.querySelector('#infra-prev').addEventListener('click',()=>selectInfra(currentInfra-1));
-document.querySelector('#infra-next').addEventListener('click',()=>selectInfra(currentInfra+1));
-selectInfra(0);
 
-// Replays on slide entry; values always finish at the supplied source figures.
-const numberAnimations = new Map();
-function animateDashboard(slide){
-  slide.classList.remove('dash-animate');void slide.offsetWidth;slide.classList.add('dash-animate');
-  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  slide.querySelectorAll('[data-number]').forEach(el=>{
-    if(numberAnimations.has(el))cancelAnimationFrame(numberAnimations.get(el));
-    const value=Number(el.dataset.number), decimals=Number(el.dataset.decimals||0);
-    const format=n=>(el.dataset.prefix||'')+n.toLocaleString('pt-BR',{minimumFractionDigits:decimals,maximumFractionDigits:decimals})+(el.dataset.suffix||'');
-    if(reduced){el.textContent=format(value);return;}
-    const start=performance.now();function tick(now){const progress=Math.min(1,(now-start)/1100);el.textContent=format(value*(1-Math.pow(1-progress,3)));if(progress<1)numberAnimations.set(el,requestAnimationFrame(tick));else numberAnimations.delete(el);}numberAnimations.set(el,requestAnimationFrame(tick));
-  });
-}
-const dashboardObserver=new MutationObserver(records=>{for(const record of records)if(!record.target.hidden)animateDashboard(record.target);});
-document.querySelectorAll('#dashboards,#fluxo-financeiro').forEach(slide=>{dashboardObserver.observe(slide,{attributes:true,attributeFilter:['hidden']});if(!slide.hidden)animateDashboard(slide);});
-document.querySelectorAll('[data-replay]').forEach(button=>button.addEventListener('click',()=>animateDashboard(document.getElementById(button.dataset.replay))));
-
-const infraImageDialog=document.querySelector('#infra-image-dialog');
-document.querySelector('#infra-enlarge').addEventListener('click',()=>infraImageDialog.showModal());
+document.querySelector('#infra-overview').addEventListener('click',()=>{
+ if(infraOverview)selectInfra(currentInfra);else setInfraOverview(true);
+});
+document.querySelector('#infra-enlarge').addEventListener('click',()=>openInfraImage(INFRA_FULL_IMAGE,'Arquitetura completa'));
 document.querySelector('#infra-image-close').addEventListener('click',()=>infraImageDialog.close());
+infraImageDialog.addEventListener('click', e => { if (e.target === infraImageDialog) infraImageDialog.close(); });
+
+selectInfra(0);
