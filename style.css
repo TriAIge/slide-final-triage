@@ -1470,9 +1470,29 @@ body {
 
 .research-problem {
     display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    gap: 48px;
-    align-items: start
+    grid-template-columns: 1.2fr 1fr;
+    /* gráfico um pouco maior que os cards */
+    gap: 32px;
+    align-items: start;
+}
+
+.problem-chart,
+.problem-list {
+    min-width: 0;
+    /* evita estourar a coluna */
+}
+
+.problem-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Em telas pequenas, volta a empilhar */
+@media (max-width: 900px) {
+    .research-problem {
+        grid-template-columns: 1fr;
+    }
 }
 
 .frequency-chart figcaption {
@@ -2263,17 +2283,25 @@ body {
     justify-content: flex-start;
     gap: 32px;
 }
+
 #infraestrutura .infra-map {
     flex: none;
 }
+
 #infraestrutura .infra-explanation {
     flex: 0 1 420px;
     margin: 0;
 }
 
 @media (max-width: 860px) {
-    #infraestrutura .infra-layout { flex-direction: column; align-items: stretch; }
-    #infraestrutura .infra-map { width: 100%; }
+    #infraestrutura .infra-layout {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #infraestrutura .infra-map {
+        width: 100%;
+    }
 }
 
 .infra-map img {
@@ -3009,8 +3037,7 @@ a:focus-visible {
 
     .slide .capital-layout,
     .slide .capital-cost,
-    .slide .load-evidence,
-    .research-problem {
+    .slide .load-evidence {
         grid-template-columns: 1fr;
         gap: 24px
     }
@@ -3095,9 +3122,6 @@ a:focus-visible {
         grid-template-columns: 1fr 88px
     }
 
-    .research-problem {
-        grid-template-columns: 1fr
-    }
 
     .slide .frequency-chart>div {
         font-size: 16px;
@@ -3234,10 +3258,6 @@ body {
     margin-bottom: 18px
 }
 
-.slide .research-problem {
-    grid-template-columns: 1.15fr 1fr;
-    gap: 32px
-}
 
 .slide .persona-grid {
     grid-template-columns: 1fr 1fr
@@ -3498,6 +3518,7 @@ body {
     align-items: center;
     gap: 28px;
 }
+
 .infra-map {
     position: relative;
     margin: 0;
@@ -3505,13 +3526,19 @@ body {
     /* largura limitada pela altura da tela, para a imagem inteira caber (1.641 = proporção do desenho) */
     width: min(calc(100vw - 480px), calc((100vh - 330px) * 1.641));
 }
+
 .infra-zoom {
     position: relative;
     transform-origin: 0 0;
     transition: transform .6s cubic-bezier(.4, 0, .2, 1);
     will-change: transform;
 }
-.infra-zoom img { display: block; width: 100%; height: auto; }
+
+.infra-zoom img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
 
 #infra-highlight {
     position: absolute;
@@ -3531,8 +3558,16 @@ body {
     background: #1b1b3f;
     color: #f5f4fb;
 }
-#infra-image-dialog::backdrop { background: rgba(5, 5, 20, .8); }
-#infra-image-caption { margin: 10px 0 0; color: #b9b8d4; }
+
+#infra-image-dialog::backdrop {
+    background: rgba(5, 5, 20, .8);
+}
+
+#infra-image-caption {
+    margin: 10px 0 0;
+    color: #b9b8d4;
+}
+
 #infra-image-view {
     display: block;
     width: 100%;
@@ -3544,11 +3579,21 @@ body {
 }
 
 @media (max-width: 860px) {
-    .infra-layout { grid-template-columns: 1fr; }
-    .infra-map { width: 100%; }
+    .infra-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .infra-map {
+        width: 100%;
+    }
 }
+
 @media (prefers-reduced-motion: reduce) {
-    .infra-zoom, #infra-highlight { transition: none; }
+
+    .infra-zoom,
+    #infra-highlight {
+        transition: none;
+    }
 }
 
 .infra-navigation button {
@@ -3577,10 +3622,12 @@ body {
     align-items: center;
     gap: 16px;
 }
+
 #infra-image-caption {
     margin: 0;
     color: #b9b8d4;
 }
+
 #infra-image-close {
     flex: none;
     width: 40px;
@@ -4211,62 +4258,55 @@ body {
 /* Testes */
 .tst-grid {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
+    grid-template-columns: 1fr;   /* era 1.3fr 1fr */
     gap: 28px;
 }
 
 .tst-grid article {
-    padding-top: 12px;
+    padding-top: 16px;
     border-top: 1px solid rgba(255, 255, 255, .18);
 }
 
 .tst-grid h3 {
-    margin: 0 0 4px;
+    margin: 0 0 6px;
     color: #e6c98a;
-    font-size: 1.15rem;
+    font-size: 1.5rem;
 }
 
 .tst-what {
-    margin: 0 0 12px;
+    margin: 0 0 24px;
     color: #f5f4fb;
+    font-size: 1.3rem;
 }
 
+/* 4 números lado a lado */
 .tst-nums {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px 20px;
-    margin-bottom: 12px;
+    grid-template-columns: repeat(4, 1fr);   /* era repeat(2, 1fr) */
+    gap: 24px 32px;
+    margin-bottom: 28px;
 }
 
 .tst-nums b {
     display: block;
-    font-size: 1.9rem;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);   /* era 1.9rem */
     line-height: 1.1;
     color: #8fd3a8;
 }
 
 .tst-nums span {
-    font-size: .9rem;
+    display: block;
+    margin-top: 6px;
+    font-size: 1.1rem;                        /* era .9rem */
     color: #f5f4fb;
 }
 
 .tst-scope {
     margin: 0;
-    padding-left: 12px;
+    padding-left: 16px;
     border-left: 3px solid rgba(230, 201, 138, .6);
-    font-size: .9rem;
+    font-size: 1.15rem;                       /* era .9rem */
     color: #b9b8d4;
-}
-
-.tst-scope b {
-    color: #e6c98a;
-}
-
-.tst-takeaway {
-    margin: 20px 0 0;
-    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
-    font-weight: 700;
-    color: #f5f4fb;
 }
 
 /* Riscos (compartilhado com o slide de riscos financeiros) */
@@ -4473,4 +4513,5 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
 

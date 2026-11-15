@@ -68,30 +68,10 @@
         <section id="tendencia" class="slide" hidden>
             <p class="tag">CONTEXTO E PROBLEMA</p>
             <h2>Alta demanda, baixa automação: a triagem ainda é manual</h2>
+
             <div class="research-problem">
-                <div class="problem-list">
-                    <article><b>Gargalo atual</b>
-                        <p><b style="color: white">Triagem</b> e análise inicial são majoritariamente <b
-                                style="color: white">manuais</b> e feitas diariamente por
-                            muitos
-                            profissionais.</p>
-                    </article>
-                    <article><b>Custo oculto</b>
-                        <p>Horas de profissionais qualificados vão para <b style="color: white">tarefas repetitivas</b>,
-                            <br>com retrabalho e
-                            baixa
-                            escalabilidade.
-                        </p>
-                    </article>
-                    <article><b>Oportunidade</b>
-                        <p>A digitalização dos processos cresceu e o <b style="color: white">uso de IA</b> nos
-                            escritórios <br>para análise,
-                            classificação e resumo dos documentos já avança, <br> porém <b style="color: white">sem
-                                controle eficiente dos
-                                dados compartilhados</b>.</p>
-                    </article>
-                </div>
-                <div class="problem-list">
+                <!-- COLUNA 1: gráfico -->
+                <div class="problem-chart">
                     <figure class="frequency-chart">
                         <figcaption>
                             <h3>Frequência de triagem jurídica na amostra</h3>
@@ -105,7 +85,23 @@
                     <p class="chart-note"><b>81%</b> dos profissionais dizem que o <b>volume de documentos afeta a
                             produtividade.</b></p>
                 </div>
+
+                <!-- COLUNA 2: cards -->
+                <div class="problem-list" style="margin-top: 30px;">
+                    <article><b>Gargalo atual</b>
+                        <p><b style="color: white">Triagem</b> é feita manualmente e diariamente.</p>
+                    </article>
+                    <article><b>Custo oculto</b>
+                        <p>Tarefas repetitivas com retrabalho e baixa escalabilidade.</p>
+                    </article>
+                    <article><b>Oportunidade</b>
+                        <p>A digitalização dos processos cresceu e o <b style="color: white">uso de IA</b> nos
+                            escritórios, <br> porém <b style="color: white">sem controle eficiente dos dados
+                                compartilhados</b>.</p>
+                    </article>
+                </div>
             </div>
+
             <p class="source">Pesquisa de campo TriAIge, 2026 - 37 profissionais do Direito respondendo à pesquisa. -
                 LEGALE, 2026 - JUSBRASIL, 2024</p>
         </section>
@@ -140,25 +136,21 @@
                 <article><span class="step-number">01</span>
                     <h3>Documento</h3>
                     <p>O escritório envia o caso pelo canal configurado por ele, integrado à TriAIge.</p>
-                    <p class="term">A solução é <b>agnóstica ao canal de entrada</b>, integrando-se a diferentes meios
-                        utilizados pelo escritório, como e-mail, WhatsApp, CRM.</p>
+                    <p class="term">A solução é <b>agnóstica ao canal de entrada</b>.</p>
                 </article>
                 <article><span class="step-number">02</span>
                     <h3>TriAIge</h3>
                     <p>Anonimiza, classifica, resume e evidecia prazos e as informações mais importantes.</p>
-                    <p class="term"><b>Anonimização:</b> nomes, CPFs, endereços e outros dados pessoais são removidos ou
-                        substituídos antes de o texto chegar à IA.</p>
+                    <p class="term"><b>Anonimização:</b> dados pessoais são removidos.</p>
                 </article>
                 <article><span class="step-number">03</span>
                     <h3>Entrega</h3>
                     <p>O relatório é disponibilizado para validação e revisão pelo profissional responsável.</p>
-                    <p class="term">A análise final e a utilização dos resultados são de responsabilidade do cliente,
-                        <b>sem retorno de feedback à ferramenta</b>.
+                    <p class="term">Cliente analisa sem retornar feedback a TriAIge.</b>
                     </p>
                 </article>
             </div>
-            <h3>A TriAIge fornece anonimização, triagem inteligente, restreabilidade de operações e observabilidade de
-                documentos jurídicos, unindo eficiência operacional, governança, segurança e conformidade com a LGPD.
+            <h3>A TriAIge fornece anonimização, triagem, restreabilidade e observabilidade do processo, unindo eficiência, governança, segurança e conformidade com a LGPD.
             </h3>
         </section>
         <section id="valor-governanca" class="slide" hidden>
@@ -480,7 +472,7 @@
             <div id="tech-test-panel" role="tabpanel" aria-labelledby="tech-test-tab">
                 <div class="tst-grid">
                     <article>
-                        <h3>Teste 1 · Muitos usuários ao mesmo tempo</h3>
+                        <h3>Teste - Muitos usuários ao mesmo tempo</h3>
                         <p class="tst-what">Simulamos até 150 pessoas usando o sistema juntas.</p>
                         <div class="tst-nums">
                             <div><b>150</b><span>usuários simultâneos no pico</span></div>
@@ -491,20 +483,6 @@
                         <p class="tst-scope"><b>O que não mede:</b> a leitura dos documentos, a IA e o envio de e-mail
                             ficaram
                             desligados. O teste avalia a plataforma, não a capacidade máxima.</p>
-                    </article>
-
-                    <article>
-                        <h3>Teste 2 · Um caso do início ao fim</h3>
-                        <p class="tst-what">Enviamos casos reais pelo fluxo completo, até a notificação final.</p>
-                        <div class="tst-nums">
-                            <div><b>27 s</b><span>do envio ao aviso, no 1º caso</span></div>
-                            <div><b>32 s</b><span>do envio ao aviso, no 2º caso</span></div>
-                        </div>
-                        <p class="tst-scope"><b>Ponto de atenção:</b> um terceiro caso ficou travado na fila. Ao
-                            reenviarmos
-                            o documento, ele foi processado normalmente. Corrigimos a publicação na fila e paginamos a
-                            lista do painel
-                            administrativo.</p>
                     </article>
                 </div>
                 <p class="source">Testes de 05/11/2026.</p>
@@ -640,12 +618,12 @@
         <dl id="plan-dialog-rules"></dl>
     </dialog>
     <dialog id="infra-image-dialog" aria-label="Arquitetura AWS ampliada">
-    <div class="infra-dialog-head">
-        <p id="infra-image-caption"></p>
-        <button id="infra-image-close" type="button" aria-label="Fechar imagem ampliada">×</button>
-    </div>
-    <img id="infra-image-view" src="assets/infra-aws-atual.png" alt="Arquitetura AWS da TriAIge ampliada">
-</dialog>
+        <div class="infra-dialog-head">
+            <p id="infra-image-caption"></p>
+            <button id="infra-image-close" type="button" aria-label="Fechar imagem ampliada">×</button>
+        </div>
+        <img id="infra-image-view" src="assets/infra-aws-atual.png" alt="Arquitetura AWS da TriAIge ampliada">
+    </dialog>
 </body>
 
 </html>
