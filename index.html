@@ -58,7 +58,8 @@
                 </div>
             </div>
             <p>
-            <h3>Como podemos transformar esse volume de dados em informação organizada e prioridades claras?</h3>
+            <h3>Esses números evidenciam o volume das demandas e informações que precisam ser analisadas diariamente.
+            </h3>
             </p>
             <p class="source"><a
                     href="https://www.cnj.jus.br/justica-em-numeros-2026-estoque-de-processos-cai-em-ano-de-maior-demanda-da-serie-historica/"
@@ -96,7 +97,7 @@
                     </article>
                     <article><b>Oportunidade</b>
                         <p>A digitalização dos processos cresceu e o <b style="color: white">uso de IA</b> nos
-                            escritórios, <br> porém <b style="color: white">sem controle eficiente dos dados
+                            escritórios, porém <b style="color: white">sem controle eficiente dos dados
                                 compartilhados</b>.</p>
                     </article>
                 </div>
@@ -140,7 +141,7 @@
                 </article>
                 <article><span class="step-number">02</span>
                     <h3>TriAIge</h3>
-                    <p>Anonimiza, classifica, resume e evidecia prazos e as informações mais importantes.</p>
+                    <p>Anonimiza, classifica, resume e evidencia prazos e as informações mais importantes.</p>
                     <p class="term"><b>Anonimização:</b> dados pessoais são removidos.</p>
                 </article>
                 <article><span class="step-number">03</span>
@@ -150,7 +151,8 @@
                     </p>
                 </article>
             </div>
-            <h3>A TriAIge fornece anonimização, triagem, restreabilidade e observabilidade do processo, unindo eficiência, governança, segurança e conformidade com a LGPD.
+            <h3>A TriAIge fornece anonimização, triagem, restreabilidade e observabilidade do processo, unindo
+                eficiência, governança, segurança e conformidade com a LGPD.
             </h3>
         </section>
         <section id="valor-governanca" class="slide" hidden>
@@ -224,35 +226,8 @@
                 </article>
             </div>
         </section>
-        <section id="dados" class="slide" hidden>
-            <p class="tag">VISÃO TÉCNICA</p>
-            <h2>O documento passa por quatro etapas dentro da TriAIge</h2>
-            <ol class="pipeline">
-                <li>
-                    <h3>Recebimento</h3>
-                    <p>Valida os documentos do escritório e guarda o original.</p>
-                    <span class="tech">Amazon S3</span>
-                </li>
-                <li>
-                    <h3>Preparação</h3>
-                    <p>Extrai o texto, normaliza e anonimiza os dados.</p>
-                    <span class="tech">OCR da AWS</span>
-                </li>
-                <li>
-                    <h3>Análise</h3>
-                    <p>Analisa o texto anonimizado e gera a triagem do caso.</p>
-                    <span class="tech">Gemini</span>
-                </li>
-                <li>
-                    <h3>Entrega</h3>
-                    <p>Envia o relatório final e encerra a triagem.</p>
-                    <span class="tech">Relatório e notificação</span>
-                </li>
-            </ol>
-            <p class="note">A anonimização acontece antes do envio do conteúdo ao modelo.</p>
-        </section>
         <section id="infraestrutura" class="slide" hidden>
-            <p class="tag">ARQUITETURA</p>
+            <p class="tag">ARQUITETURA E FLUXO DO PROCESSO</p>
             <h2>Infraestrutura atual na AWS</h2>
 
             <div class="infra-steps" role="group" aria-label="Etapas do fluxo na infraestrutura">
@@ -365,68 +340,74 @@
             <h2>A TriAIge chega ao caixa anual positivo já no Ano 3</h2>
 
             <div class="cap-grid">
-                <figure class="cap-chart">
-                    <svg viewBox="0 0 600 255" role="img" aria-label="Resultado anual do caixa, Ano 0 ao Ano 5">
-                        <line x1="10" y1="170" x2="590" y2="170" class="axis" />
-                        <rect class="bar-neg" x="30" y="170" width="50" height="34.6" /><text class="val" x="55"
-                            y="224">−432 mil</text>
-                        <rect class="bar-neg" x="125" y="170" width="50" height="41.8" /><text class="val" x="150"
-                            y="231">−523 mil</text>
-                        <rect class="bar-neg" x="220" y="170" width="50" height="21.2" /><text class="val" x="245"
-                            y="211">−265 mil</text>
-                        <rect class="bar-pos" x="315" y="162.2" width="50" height="7.8" /> <text class="val" x="340"
-                            y="154">+97 mil</text>
-                        <rect class="bar-pos" x="410" y="107.3" width="50" height="62.7" /><text class="val" x="435"
-                            y="99">+784 mil</text>
-                        <rect class="bar-pos" x="505" y="28.6" width="50" height="141.4" /><text class="val" x="530"
-                            y="20">+1,77 mi</text>
-                        <text class="yr" x="55" y="251">Ano 0</text><text class="yr" x="150" y="251">Ano 1</text>
-                        <text class="yr" x="245" y="251">Ano 2</text><text class="yr" x="340" y="251">Ano 3</text>
-                        <text class="yr" x="435" y="251">Ano 4</text><text class="yr" x="530" y="251">Ano 5</text>
-                    </svg>
-                </figure>
 
+                <!-- TEXTO (esquerda) -->
                 <div class="cap-main">
                     <span class="cap-label">Aporte projetado</span>
                     <strong>R$ 1,22 mi</strong>
-                    <p>Cobre o maior saldo negativo acumulado (Ano 2) até a receita cobrir as saídas.</p>
+
                     <ul class="cap-uso">
                         <li><b>Equipe:</b> desenvolvimento, evolução e sustentação</li>
                         <li><b>Tecnologia:</b> nuvem, IA, APIs de jurisprudência e monitoramento</li>
                         <li><b>Comercial:</b> aluguel de equipamentos e aquisição de clientes</li>
                     </ul>
-                    <p class="cap-capex"><b>CAPEX zero:</b> sem compra de servidores ou equipamentos.</p>
+
+                    <p class="cap-capex" style="font-size: 15px;"><b>CAPEX zero:</b> sem compra de servidores ou
+                        equipamentos.</p>
+
+
+                    <div class="cap-roi">
+                        <div class="roi-num">
+                            <span class="roi-label">ROI</span>
+                            <strong>19,7%</strong>
+                        </div>
+                        <p><b>Retorno sobre o investimento:</b> cada R$ 100 de custo gera R$ 19,71 de ganho
+                            líquido.</p>
+                    </div>
                 </div>
-            </div>
-        </section>
-        <section id="retorno-comercial" class="slide" hidden>
-            <p class="tag">VIABILIDADE COMERCIAL · RETORNO</p>
-            <h2>O cenário projeta recuperação do capital no Ano 5</h2>
-            <div class="cap-kpis">
-                <article>
-                    <span>VALOR PRESENTE LÍQUIDO</span>
-                    <strong>R$ 170 mil</strong>
-                    <p>VPL positivo: o projeto recupera os recursos do fluxo de caixa e ainda gera valor acima da
-                        rentabilidade mínima exigida de 18% ao ano.</p>
-                </article>
-                <article>
-                    <span>ROI</span>
-                    <strong>19,7%</strong>
-                    <p>Cada R$ 100 de custo considerado gera R$ 19,71 de ganho líquido no horizonte do projeto.</p>
-                </article>
-                <article>
-                    <span>MOIC · MÚLTIPLO SOBRE O CAPITAL</span>
-                    <strong>2,17×</strong>
-                    <p>Para cada R$ 1,00 de fluxo líquido negativo, o projeto gera R$ 2,17 de fluxo líquido positivo:
-                        geração de caixa superior ao capital desembolsado.</p>
-                </article>
-            </div>
 
-            <p class="cap-payback"><b>Payback no Ano 5:</b> é quando o caixa acumulado se torna positivo, ou seja, o
-                projeto recupera todo o aporte investido e passa a gerar caixa líquido.</p>
-            <p class="cap-impact">A TriAIge devolve o capital investido <span>e ainda gera valor acima do
-                    exigido.</span></p>
+                <!-- GRÁFICO (direita) -->
+                <figure class="cap-chart">
+                    <svg viewBox="0 0 600 255" role="img" aria-label="Resultado anual do caixa, Ano 0 ao Ano 5">
+                        <line x1="10" y1="170" x2="590" y2="170" class="axis" />
 
+                        <rect class="bar-neg" x="30" y="170" width="50" height="34.6" />
+                        <text class="val" x="55" y="224">−432 mil</text>
+
+                        <rect class="bar-neg" x="125" y="170" width="50" height="41.8" />
+                        <text class="val" x="150" y="231">−523 mil</text>
+
+                        <rect class="bar-neg" x="220" y="170" width="50" height="21.2" />
+                        <text class="val" x="245" y="211">−265 mil</text>
+
+                        <rect class="bar-pos" x="315" y="162.2" width="50" height="7.8" />
+                        <text class="val" x="340" y="154">+97 mil</text>
+
+                        <rect class="bar-pos" x="410" y="107.3" width="50" height="62.7" />
+                        <text class="val" x="435" y="99">+784 mil</text>
+
+                        <!-- Ano 5 com hover/foco -->
+                        <g class="bar-y5" tabindex="0" aria-describedby="tip-y5">
+                            <rect x="495" y="0" width="70" height="255" fill="transparent" />
+                            <rect class="bar-pos" x="505" y="28.6" width="50" height="141.4" />
+                            <text class="val" x="530" y="20">+1,77 mi</text>
+                        </g>
+
+                        <text class="yr" x="55" y="251">Ano 0</text>
+                        <text class="yr" x="150" y="251">Ano 1</text>
+                        <text class="yr" x="245" y="251">Ano 2</text>
+                        <text class="yr" x="340" y="251">Ano 3</text>
+                        <text class="yr" x="435" y="251">Ano 4</text>
+                        <text class="yr" x="530" y="251">Ano 5</text>
+                    </svg>
+
+                    <div class="cap-tip" id="tip-y5" role="tooltip">
+                        <b>Payback no Ano 5</b>
+                        O projeto recupera todo o aporte investido e passa a gerar caixa líquido.
+                    </div>
+                </figure>
+
+            </div>
         </section>
 
         <section id="riscos-financeiros" class="slide" hidden>
