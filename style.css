@@ -4621,3 +4621,16 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* Planos em cards, separados das observações abaixo */
+.slide .plans article {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 18px 20px;
+}
+
+.slide .plans article strong {
+    margin: 6px 0;
+}
